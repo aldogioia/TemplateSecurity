@@ -1,6 +1,6 @@
 # 🚀 Spring Boot Base Template
 
-Benvenuto nel **Spring Boot Secure API Template **, un progetto di partenza pronto all’uso per creare nuove applicazioni Spring Boot.
+Benvenuto nel **Spring Boot Secure API Template**, un progetto di partenza pronto all’uso per creare nuove applicazioni Spring Boot.
 
 ## ✨ Funzionalità incluse
 ✅ **Autenticazione basata su JWT**  
