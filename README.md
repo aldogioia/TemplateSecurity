@@ -1,6 +1,6 @@
 # 🚀 Spring Boot Base Template
 
-Benvenuto nel **Spring Boot Base Template**, un progetto di partenza pronto all’uso per creare nuove applicazioni Spring Boot.
+Benvenuto nel **Spring Boot Secure API Template **, un progetto di partenza pronto all’uso per creare nuove applicazioni Spring Boot.
 
 ## ✨ Funzionalità incluse
 ✅ **Autenticazione basata su JWT**  
@@ -18,6 +18,12 @@ Benvenuto nel **Spring Boot Base Template**, un progetto di partenza pronto all�
 
 ---
 
-**Autore**: Aldo gioia
+## 📄 Licenza
 
-**Licenza**: MIT
+Questo progetto è rilasciato sotto la licenza [MIT](./LICENSE).  
+Puoi usarlo liberamente per scopi personali o commerciali, modificarlo e ridistribuirlo, a patto di includere sempre il testo della licenza originale.
+
+---
+
+**Autore**: Aldo Gioia
+
