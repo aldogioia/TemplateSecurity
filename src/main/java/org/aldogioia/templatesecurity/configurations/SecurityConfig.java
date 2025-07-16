@@ -51,16 +51,13 @@ public class SecurityConfig {
                 }))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth
 //                        .requestMatchers(
-//                                "/api/v1/auth/sign-in",
-//                                "/api/v1/auth/sign-up",
-//                                "/api/v1/auth/refresh",
-//                                "/api/v1/password/**",
-//                                "/api/v1/admin/**"
+//                             // TODO: Specificare qui i pattern delle URL pubbliche (es. "/auth/**", "/public/**")
+//                             // Esempio: "/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**"
 //                        ).permitAll()
-//                        .anyRequest().authenticated()
-//                )
+                        .anyRequest().authenticated()
+                )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(jwtEntryPoint));
         return httpSecurity.build();
