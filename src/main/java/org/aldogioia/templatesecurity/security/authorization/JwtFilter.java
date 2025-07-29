@@ -19,7 +19,16 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-
+/**
+ * Filtro di sicurezza che intercetta ogni richiesta HTTP per validare il token JWT di accesso.
+ * <p>
+ * - Estrae il JWT dalla richiesta.
+ * - Verifica che il token sia valido e non sia in blacklist.
+ * - Recupera i dettagli dell'utente associato al token.
+ * - Imposta l'autenticazione nel SecurityContext di Spring.
+ * <p>
+ * Se il token non è valido o è in blacklist, la richiesta prosegue senza autenticazione.
+ */
 @Component
 @NonNullApi
 @RequiredArgsConstructor
@@ -31,7 +40,7 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = jwtHandler.getJwtFromRequest(request, TokenType.ACCESS);
-        if (!jwt.equals("invalid") && jwtHandler.isValidAccessToken(jwt) && blacklistService.isTokenBlacklisted(jwt)) {
+        if (!jwt.equals("invalid") && jwtHandler.isValidAccessToken(jwt) && !blacklistService.isTokenBlacklisted(jwt)) {
             String phoneNumberFromToken = jwtHandler.getPhoneNumberFromToken(jwt);
             CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(phoneNumberFromToken);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

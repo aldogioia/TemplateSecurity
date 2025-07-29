@@ -30,7 +30,7 @@ public class JwtHandler {
     }
 
     public String generateRefreshToken(User user) {
-        return createToken(user, 1, ChronoUnit.MONTHS, TokenType.REFRESH);
+        return createToken(user, 60, ChronoUnit.DAYS, TokenType.REFRESH);
     }
 
     private String createToken(User user, long amountToAdd, ChronoUnit unit, TokenType type) {

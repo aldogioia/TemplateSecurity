@@ -20,6 +20,12 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.Arrays;
 
+/**
+ * Configurazione di sicurezza per l'applicazione Spring Boot.
+ * <p>
+ * Definisce la catena dei filtri di sicurezza, la gestione delle sessioni,
+ * la configurazione CORS, la codifica delle password e le regole di autorizzazione.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -37,7 +43,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(18);
+        return new BCryptPasswordEncoder(12);
     }
 
     @Bean
@@ -52,10 +58,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(
-//                             // TODO: Specificare qui i pattern delle URL pubbliche (es. "/auth/**", "/public/**")
-//                             // Esempio: "/api/auth/**", "/swagger-ui/**", "/v3/api-docs/**"
-//                        ).permitAll()
+                        // TODO: Specificare qui i pattern delle URL pubbliche
+                        .requestMatchers(
+                                "/api/v1/auth/sign-in",
+                                "/api/v1/auth/sign-up",
+                                "/api/v1/auth/refresh"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
